@@ -13,7 +13,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 env:
-  WEBAPP_NAME: SampleMVC.sln     # set this to your application's name
+  WEBAPP_NAME: SampleMVCProject.sln     # set this to your application's name
   WEBAPP_PACKAGE_PATH: 'published'      # set this to the path to your web app project, defaults to the repository root
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,12 +34,12 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.5
         
       - name: Restore NuGet Packages
-        run: nuget restore SampleMVC.sln
+        run: nuget restore SampleMVCProject.sln
         
-      - name: Build Solution
-        run: msbuild SampleMVC.sln /p:Configuration=Release
+  #    - name: Build Solution
+   #     run: msbuild SampleMVCProject.sln /p:Configuration=Release
         
-      - name: Publish to folder
+      - name: Build and Publish to folder
         run: msbuild ${{ env.WEBAPP_NAME }} /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=${{ env.WEBAPP_PACKAGE_PATH }} /p:PackageAsSingleFile=false
         
    #   - name: Publish artifacts
