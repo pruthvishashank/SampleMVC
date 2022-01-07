@@ -36,8 +36,8 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore SampleMVCProject.sln
         
-  #    - name: Build Solution
-   #     run: msbuild SampleMVCProject.sln /p:Configuration=Release
+      - name: Build Solution
+        run: msbuild SampleMVCProject.sln /p:Configuration=Release
         
       - name: Build and Publish to folder
         run: msbuild ${{ env.WEBAPP_NAME }} /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=${{ env.WEBAPP_PACKAGE_PATH }} /p:PackageAsSingleFile=false
