@@ -1,4 +1,4 @@
-name: .NET MVC
+name: .NET MVC Sample
 
 on:
   push:
